@@ -37,7 +37,7 @@ const __fetch = (url: string, options: any) => {
         query += `&${key}=${value}`;
       }
     });
-    __url += '?' + query;
+    __url += "?" + query;
   }
 
   fetch(__url, {
@@ -45,7 +45,11 @@ const __fetch = (url: string, options: any) => {
     body: JSON.stringify(params.body)
   }).then(body => {
     if (params.headers["Content-Type"] === "application/json") {
-      return body.json();
+      try {
+        return body.json();
+      } catch(err) {
+        throw new TypeError("JSON解析异常");
+      }
     }
 
     return body.json();

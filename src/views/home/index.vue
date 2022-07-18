@@ -1,5 +1,6 @@
 <template>
   {{userId}}
+  <el-button class="btn-test" @click="setUserId">修改userId</el-button>
   <button class="btn-test" @click="setUserId">修改userId</button>
 </template>
 
@@ -8,8 +9,10 @@ import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 import "@/assets/postcssAuto/test.less";
 import {getUser, getUserInfo} from "@/reqeues/api/user";
+import { ElButton } from "element-plus";
 
 export default defineComponent({
+  components: { ElButton },
   mounted() {
     getUser();
     getUserInfo({data:{name: "ljy"}, params: {name: "ljy2"}});
